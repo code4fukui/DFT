@@ -29,13 +29,20 @@ export class DataViewer extends HTMLElement {
       const g = this.g;
       g.fillStyle = "white";
       g.fillRect(0, 0, w, h);
-      g.fillStyle = "black";
+      //g.fillStyle = "black";
+      g.strokeStyle = "black";
       for (let i = 0; i < w; i++) {
         const i2 = Math.floor(i / w * this.data.length);
         const n = this.data[i2];
         const m = (n - miny) / (maxy - miny) * h;
-        g.fillRect(i, m, 1, 1);
+        //g.fillRect(i, m, 1, 1);
+        if (i == 0) {
+          g.moveTo(i, m);
+        } else {
+          g.lineTo(i, m);
+        }
       }
+      g.stroke();
     };
     //show();
     //this.addEventListener("resize", () => show());
