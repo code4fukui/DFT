@@ -15,6 +15,7 @@
 <div id=chart3></div>
 
 <script type="module">
+import { dft, idft, makeLen } from "./DFT.js";
 import { initC3 } from "https://code4fukui.github.io/c3-es/c3-es.js";
 const c3 = initC3(window);
 
@@ -51,52 +52,6 @@ const makeSine = (n, f1, ph1, amp1, f2, ph2, amp2) => {
     res[i] = Math.sin(th1) * amp1 + Math.sin(th2) * amp2;
   }
   return res;
-};
-
-const makeLen = (re, im) => {
-  const res = new Array(re.length);
-  for (let i = 0; i < re.length; i++) {
-    res[i] = Math.sqrt(re[i] * re[i] + im[i] * im[i]);
-  }
-  return res;
-};
-
-export const dft = (data) => {
-  const len = data.length;
-  const re = new Array(len);
-  const im = new Array(len);
-  for (let i = 0; i < len; i++) {
-    let re1 = 0;
-    let im1 = 0;
-    for (let j = 0; j < len; j++) {
-      const th = 2 * Math.PI * i * j / len;
-      const d = data[j];
-      re1 += d * Math.cos(th);
-      im1 += -d * Math.sin(th);
-    }
-    re[i] = re1;
-    im[i] = im1;
-  }
-  return [re, im];
-};
-
-export const idft = (re, im) => {
-  const len = re.length;
-  const re2 = new Array(len);
-  const im2 = new Array(len);
-  for (let i = 0; i < len; i++) {
-    let re1 = 0.0;
-    let im1 = 0.0;
-    for (let j = 0; j < len; j++) {
-      const th = 2 * Math.PI * i * j / len;
-      re1 += re[j] * Math.cos(th) - im[j] * Math.sin(th);
-      //im1 += re[j] * Math.sin(th) + im[j] * Math.cos(th);
-    }
-    re2[i] = re1 / len;
-    //im2[i] = im1 / len;
-  }
-  //return [re2, im2];
-  return re2;
 };
 
 const show = () => {
