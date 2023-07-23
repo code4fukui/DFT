@@ -10,9 +10,10 @@ import { DataViewer } from "./DataViewer.js";
 
 //const fn = "./sekaideichiban.wav-r.cbor";
 //const fn = "./sekaideichiban.wav-p.cbor";
-const fn = "./sekaideichiban.wav-re.cbor";
-const bin = new Uint8Array(await (await fetch(fn)).arrayBuffer());
-const data = CBOR.decode(bin);
+//const fn = "./sekaideichiban.wav-re.cbor";
+//const fn = "./sekaideichiban.wav-re.f32.bin";
+const fn = "./sekaideichiban.wav-im.f32.bin";
+const data = new Float32Array(await (await fetch(fn)).arrayBuffer());
 console.log(data);
 
 const showChart = (bindto, data, data2, data3) => {
