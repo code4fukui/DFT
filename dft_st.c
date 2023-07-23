@@ -20,6 +20,7 @@ int main() {
   float* im = (float*)malloc(len * sizeof(float));
   dft(src, len, re, im);
   double dt = performanceNow() - now;
+
   printf("time: %f\n", dt); // 44100samples, time: 14.769461
   writeFloat(fnre, re, len);
   writeFloat(fnim, im, len);
