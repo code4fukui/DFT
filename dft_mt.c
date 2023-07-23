@@ -32,6 +32,7 @@ void* thread_func(void* arg) {
 
 int check(int nthread, float* src, size_t len, float* re, float* im) {
   double now = performanceNow();
+  clock_t nowc = clock();
 
   pthread_t threads[nthread];
   thread_t data[nthread];
@@ -48,13 +49,17 @@ int check(int nthread, float* src, size_t len, float* re, float* im) {
     pthread_join(threads[i], NULL);
   }
   double dt = performanceNow() - now;
+  double dtc = (double)(clock() - nowc) / CLOCKS_PER_SEC;
 
   printf("%d,", nthread);
-  printf("%f\n", dt);
+  printf("%f,", dt);
+  printf("%f\n", dtc);
   return 0;
 }
 
 int main(void) {
+  int benchmark = 1;
+
   const char* fn = "sekaideichiban.wav-r.i16.bin";
   const char* fnre = "sekaideichiban.wav-re.f32.bin";
   const char* fnim = "sekaideichiban.wav-im.f32.bin";
@@ -68,13 +73,14 @@ int main(void) {
   float* re = (float*)malloc(len * sizeof(float));
   float* im = (float*)malloc(len * sizeof(float));
 
-  printf("nthread,time\n");
-  /* // benchmark
-  for (int i = 1; i <= 20; i++) {
-    check(i, src, len, re, im);
+  printf("nthread,time,cputime\n");
+  if (benchmark) {
+    for (int i = 1; i <= 20; i++) {
+      check(i, src, len, re, im);
+    }
+  } else {
+    check(6, src, len, re, im); // for M1 Pro
   }
-  */
-  check(6, src, len, re, im); // for M1 Pro
 
   writeFloat(fnre, re, len);
   writeFloat(fnim, im, len);

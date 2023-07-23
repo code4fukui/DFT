@@ -29,7 +29,7 @@ t[1] = 0x100;
 await Deno.writeFile("test-r.i16.bin", Int16.encode(t));
 
 const fn = "sekaideichiban.wav";
-const dsec = 3;
+const dsec = 1;
 
 const wav = new WaveFile();
 wav.fromBuffer(await Deno.readFile(fn));
