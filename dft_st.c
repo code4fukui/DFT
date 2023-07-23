@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "readFloatFromInt16.h"
 #include "dft.h"
 #include "writeFloat.h"

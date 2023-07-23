@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <pthread.h>
 #include "performanceNow.h"
 #include "readFloatFromInt16.h"

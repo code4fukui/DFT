@@ -63,7 +63,7 @@ await Deno.writeFile(fn + "-l.cbor", CBOR.encode(toArray(left)));
 
 await Deno.writeFile(fn + "-r.i16.bin", Int16.encode(right));
 
-Deno.exit();
+//Deno.exit();
 
 const now = performance.now();
 const freq = dft(right);
