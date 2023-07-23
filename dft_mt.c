@@ -19,12 +19,9 @@ void* thread_func(void* arg) {
   thread_t* d = (thread_t*)arg;
   int id = d->threadid;
   int len = d->len;
-  int tlen = len / d->nthread;
-  int start = tlen * id;
-  int end = tlen * (id + 1);
-  if (end + tlen > len) {
-    end = len;
-  }
+  int nthread = d->nthread;
+  int start = id * len / nthread;
+  int end = (id + 1) * len / nthread;
   for (int i = start; i < end; i++) {
     dft1(d->src, len, d->re, d->im, i);
   }
@@ -59,7 +56,7 @@ int check(int nthread, float* src, size_t len, float* re, float* im) {
 }
 
 int main(void) {
-  int benchmark = 1;
+  int benchmark = 0;
 
   const char* fn = "sekaideichiban.wav-r.i16.bin";
   const char* fnre = "sekaideichiban.wav-re.f32.bin";
@@ -70,6 +67,7 @@ int main(void) {
   if (!src) {
     return 1;
   }
+  printf("len: %zu\n", len);
 
   float* re = (float*)malloc(len * sizeof(float));
   float* im = (float*)malloc(len * sizeof(float));

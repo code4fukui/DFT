@@ -11,8 +11,8 @@ import { DataViewer } from "./DataViewer.js";
 //const fn = "./sekaideichiban.wav-r.cbor";
 //const fn = "./sekaideichiban.wav-p.cbor";
 //const fn = "./sekaideichiban.wav-re.cbor";
-//const fn = "./sekaideichiban.wav-re.f32.bin";
-const fn = "./sekaideichiban.wav-im.f32.bin";
+const fn = "./sekaideichiban.wav-re.f32.bin";
+//const fn = "./sekaideichiban.wav-im.f32.bin";
 const data = new Float32Array(await (await fetch(fn)).arrayBuffer());
 console.log(data);
 

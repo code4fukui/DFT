@@ -1,5 +1,9 @@
 #include <math.h>
 
+#ifndef __CUDACC__
+#define __device__
+#endif
+
 void dft(float* src, size_t len, float* re, float* im) {
   for (int i = 0; i < len; i++) {
     float re1 = 0.0f;
@@ -17,7 +21,7 @@ void dft(float* src, size_t len, float* re, float* im) {
   }
 }
 
-void dft1(float* src, size_t len, float* re, float* im, int i) {
+__device__ void dft1(float* src, size_t len, float* re, float* im, int i) {
   float re1 = 0.0f;
   float im1 = 0.0f;
   float dth = (2.0f * (float)M_PI) * i / len;
