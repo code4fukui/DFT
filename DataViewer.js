@@ -34,7 +34,7 @@ export class DataViewer extends HTMLElement {
       for (let i = 0; i < w; i++) {
         const i2 = Math.floor(i / w * this.data.length);
         const n = this.data[i2];
-        const m = (n - miny) / (maxy - miny) * h;
+        const m = (h - 1) - (n - miny) / (maxy - miny) * h;
         //g.fillRect(i, m, 1, 1);
         if (i == 0) {
           g.moveTo(i, m);
