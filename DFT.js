@@ -5,11 +5,13 @@ export const dft = (data) => {
   for (let i = 0; i < len; i++) {
     let re1 = 0;
     let im1 = 0;
+    const dth = 2 * Math.PI * i / len;
+    let th = 0;
     for (let j = 0; j < len; j++) {
-      const th = 2 * Math.PI * i * j / len;
       const d = data[j];
       re1 += d * Math.cos(th);
-      im1 += -d * Math.sin(th);
+      im1 -= d * Math.sin(th);
+      th += dth;
     }
     re[i] = re1;
     im[i] = im1;
@@ -23,7 +25,7 @@ export const idft = (re, im) => {
   const im2 = new Array(len);
   for (let i = 0; i < len; i++) {
     let re1 = 0.0;
-    let im1 = 0.0;
+    //let im1 = 0.0;
     for (let j = 0; j < len; j++) {
       const th = 2 * Math.PI * i * j / len;
       re1 += re[j] * Math.cos(th) - im[j] * Math.sin(th);
