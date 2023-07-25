@@ -1,5 +1,8 @@
 export const Int16 = {
   encode: (data) => {
+    if (data instanceof Array) {
+      data = new Int16Array(data);
+    }
     const bin = new Uint8Array(data.buffer);
     return bin;
     /*
@@ -16,6 +19,9 @@ export const Int16 = {
       throw new Error("not supported type");
     }
     */
+  },
+  decode: (bin) => {
+    return new Int16Array(bin.buffer);
   },
 };
 

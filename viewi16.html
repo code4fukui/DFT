@@ -11,17 +11,25 @@ import { DataViewer } from "./DataViewer.js";
 //const fn = "./sekaideichiban.wav-r.cbor";
 //const fn = "./sekaideichiban.wav-p.cbor";
 //const fn = "./sekaideichiban.wav-re.cbor";
-const fn = "./sekaideichiban.wav-re.f32.bin"; // for dft
+//const fn = "./sekaideichiban.wav-re.f32.bin"; // for dft
 //const fn = "./sekaideichiban.wav-im.f32.bin";
-const data = new Float32Array(await (await fetch(fn)).arrayBuffer());
-console.log(data);
+const fns = [
+  "./sekaideichiban.wav-r-idft.i16.bin", // for idft
+  "./sekaideichiban.wav-r-idftjs.i16.bin", // ok for idft
+  "./sekaideichiban.wav-r.i16.bin", // original
+];
 
-const showChart = (bindto, data, data2, data3) => {
-  const view = new DataViewer(data);
-  document.getElementById(bindto.substring(1)).appendChild(view);
-};
 
-showChart("#chart1", data);
+for (const fn of fns) {
+  const data = new Int16Array(await (await fetch(fn)).arrayBuffer());
+  console.log(data);
+
+  const showChart = (bindto, data, data2, data3) => {
+    const view = new DataViewer(data);
+    document.getElementById(bindto.substring(1)).appendChild(view);
+  };
+  showChart("#chart1", data);
+}
 
 </script>
 

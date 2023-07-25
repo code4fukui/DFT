@@ -2,11 +2,12 @@ import { WaveFile } from "https://code4fukui.github.io/wavefile-es/index.js";
 import { CBOR } from "https://js.sabae.cc/CBOR.js";
 import { dft, idft, makeLen } from "./DFT.js";
 import { Int16 } from "./Int16.js";
+import { Float32 } from "./Float32.js";
 
 const fn = "sekaideichiban.wav";
-const dsec = 3;
-const all = true;
-const dftinjs = false;
+const dsec = 1;
+const all = false;
+const dftinjs = true;
 
 const wav = new WaveFile();
 wav.fromBuffer(await Deno.readFile(fn));
@@ -41,11 +42,16 @@ await Deno.writeFile(fn + "-r.i16.bin", Int16.encode(right));
 
 if (!dftinjs) Deno.exit();
 
-const now = performance.now();
-const freq = dft(right);
-const dt = performance.now() - now;
-console.log("time: " + dt / 1000 + "sec"); // 44100samples time: 33.18sec
+let freq;
+{
+  const now = performance.now();
+  freq = dft(right);
+  const dt = performance.now() - now;
+  console.log("dft time: " + dt / 1000 + "sec"); // 44100samples time: 33.18sec
 
-await Deno.writeFile(fn + "-re.cbor", CBOR.encode(freq[0]));
-const power = makeLen(freq[0], freq[1]);
-await Deno.writeFile(fn + "-p.cbor", CBOR.encode(power));
+  await Deno.writeFile(fn + "-re.f32.bin", Float32.encode(freq[0]));
+  await Deno.writeFile(fn + "-im.f32.bin", Float32.encode(freq[1]));
+  const power = makeLen(freq[0], freq[1]);
+  //await Deno.writeFile(fn + "-p.cbor", CBOR.encode(power));
+  await Deno.writeFile(fn + "-p.f32.bin", Float32.encode(power));
+}

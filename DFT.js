@@ -1,7 +1,9 @@
 export const dft = (data) => {
   const len = data.length;
-  const re = new Array(len);
-  const im = new Array(len);
+  //const re = new Array(len);
+  //const im = new Array(len);
+  const re = new Float32Array(len);
+  const im = new Float32Array(len);
   for (let i = 0; i < len; i++) {
     let re1 = 0;
     let im1 = 0;
