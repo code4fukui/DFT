@@ -68,7 +68,7 @@ int check(int nthread, float* src, size_t len, float* re, float* im) {
 }
 
 int main(void) {
-  int benchmark = 1;
+  int benchmark = 0;
 
   const char* fn = "sekaideichiban.wav-r.i16.bin";
   const char* fnre = "sekaideichiban.wav-re.f32.bin";
