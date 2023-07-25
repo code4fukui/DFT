@@ -11,6 +11,7 @@ const im = Float32.decode(await Deno.readFile(fn + "-im.f32.bin"));
 
 console.log(re.length);
 
+/*
 for (let i = 0; i < im.length; i++) {
   //im[i] = 0;
   const p = Math.sqrt(re[i] * re[i] + im[i] * im[i]);
@@ -19,6 +20,7 @@ for (let i = 0; i < im.length; i++) {
   re[i] = Math.cos(th2) * p;
   im[i] = Math.sin(th2) * p;
 }
+*/
 
 const now = performance.now();
 const right2 = idft(re, im);

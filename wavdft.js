@@ -5,9 +5,9 @@ import { Int16 } from "./Int16.js";
 import { Float32 } from "./Float32.js";
 
 const fn = "sekaideichiban.wav";
-const dsec = 1;
-const all = false;
-const dftinjs = true;
+const dsec = 20;
+const all = true;
+const dftinjs = false;
 
 const wav = new WaveFile();
 wav.fromBuffer(await Deno.readFile(fn));

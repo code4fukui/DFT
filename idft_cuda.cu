@@ -13,11 +13,9 @@ __global__ void vector_idft(float* re, float* im, size_t len, float* dst) {
     return;
   }
   float re1 = 0.0f;
-  float th = 0.0f;
-  float dth = (2.0f * (float)M_PI) * i / len;
   for (int j = 0; j < len; j++) {
+    float th = (2.0f * (float)M_PI) * i * j / len;
     re1 += re[j] * cosf(th) - im[j] * sinf(th);
-    th += dth;
   }
   dst[i] = re1 / len;
 }
