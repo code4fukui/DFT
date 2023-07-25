@@ -1,3 +1,5 @@
+#if 0
+
 #include <stdio.h>
 #include <fcntl.h>
 #include <sys/stat.h>
@@ -21,3 +23,21 @@ size_t getFileSize(const char* in_fname) { // ret 0 if err
   }
   return file_size;
 }
+
+#else
+
+#include <stdio.h>
+
+size_t getFileSize(const char* fn) { // ret 0 if err
+  FILE *fp = fopen(fn, "rb");
+  if (!fp) {
+    return 0;
+  }
+  fseek(fp, 0, SEEK_END);
+  long filesize = ftell(fp);
+  fclose(fp);
+  return filesize;
+}
+
+#endif
+
