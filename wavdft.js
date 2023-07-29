@@ -5,7 +5,7 @@ import { Int16 } from "./Int16.js";
 import { Float32 } from "./Float32.js";
 
 const fn = "sekaideichiban.wav";
-const dsec = 20;
+const dsec = 10;
 const all = true;
 const dftinjs = false;
 
@@ -35,10 +35,11 @@ const toArray = (ar) => {
 };
 //await Deno.writeTextFile(fn + "-r.json", JSON.stringify(right));
 //await Deno.writeTextFile(fn + "-l.json", JSON.stringify(left));
-await Deno.writeFile(fn + "-r.cbor", CBOR.encode(toArray(right)));
-await Deno.writeFile(fn + "-l.cbor", CBOR.encode(toArray(left)));
+//await Deno.writeFile(fn + "-r.cbor", CBOR.encode(toArray(right)));
+//await Deno.writeFile(fn + "-l.cbor", CBOR.encode(toArray(left)));
 
 await Deno.writeFile(fn + "-r.i16.bin", Int16.encode(right));
+await Deno.writeFile(fn + "-l.i16.bin", Int16.encode(left));
 
 if (!dftinjs) Deno.exit();
 
