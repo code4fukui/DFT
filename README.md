@@ -2,11 +2,11 @@
 
 - [DFT demo](https://code4fukui.github.io/DFT/)
 
-## データ出典
+## Data Source
 
-- [世界で一番熱い町さばえ MP3 by Sing J Roy](https://www.city.sabae.fukui.jp/about_city/opendata/data_list/sekai-de-ichiban.html) [CC BY](https://creativecommons.org/licenses/by/4.0/deed.ja)
+- [Sekaide Ichiban Atsui Machi Sabae MP3 by Sing J Roy](https://www.city.sabae.fukui.jp/about_city/opendata/data_list/sekai-de-ichiban.html) [CC BY](https://creativecommons.org/licenses/by/4.0/deed.ja)
 
-## ベンチマーク
+## Benchmarks
 
 ### 44100 samples 1sec
 
@@ -35,19 +35,19 @@
 
 - Core i7-6700 Windows 10 NVIDIA RXT 3060Ti, 63.493813 sec (fast-math)
 
-### Windowsでの時間計測方法
+### Time Measurement on Windows
 
 ```
 powershell -C Measure-Command {./a.exe}
 ```
 
-### compile dft_st.c by nvcc on Windows
+### Compile dft_st.c with nvcc on Windows
 
 ```
 nvcc dft_st.c -D_USE_MATH_DEFINES
 ```
 
-### compile dft_mt.c by mac
+### Compile dft_mt.c on Mac
 
 ```
 gcc dft_mt.c -D__device__=
