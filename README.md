@@ -1,6 +1,8 @@
 # DFT
 
-- [DFT demo](https://code4fukui.github.io/DFT/)
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
+A simple audio processing demonstration using the Discrete Fourier Transform.
 
 ## Data Source
 
@@ -35,19 +37,23 @@
 
 - Core i7-6700 Windows 10 NVIDIA RXT 3060Ti, 63.493813 sec (fast-math)
 
-### Time Measurement on Windows
+## Compile and Run
+
+### Windows
 
 ```
 powershell -C Measure-Command {./a.exe}
 ```
 
-### Compile dft_st.c with nvcc on Windows
+Compile `dft_st.c` with `nvcc` on Windows:
 
 ```
 nvcc dft_st.c -D_USE_MATH_DEFINES
 ```
 
-### Compile dft_mt.c on Mac
+### Mac
+
+Compile `dft_mt.c` on Mac:
 
 ```
 gcc dft_mt.c -D__device__=
