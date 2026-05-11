@@ -1,6 +1,6 @@
 # DFT
 
-離散フーリエ変換(Discrete Fourier Transform)を使った、簡単な音声処理のデモンストレーションです。
+離散フーリエ変換（DFT）を用いたシンプルな音声処理のデモンストレーションです。
 
 ## データソース
 
@@ -8,35 +8,39 @@
 
 ## ベンチマーク
 
-各環境でのDFTの処理時間を計測しています。
+本リポジトリでは、さまざまな環境における離散フーリエ変換（DFT）実装のベンチマークを提供しています。
 
-### 44100サンプル 1秒
-
-- M1 Macbook Pro, Deno in JavaScript: 33.18秒
+- M1 Macbook Pro, JavaScript (Deno): 33.18秒
 - M1 Macbook Pro, C言語: 11.786060秒
-- M1 Macbook Pro, C言語 (6スレッド): 2.250893秒
-- Core i7-6700 Windows 10, Deno in JavaScript: 84.94秒
+- M1 Macbook Pro, C言語（6スレッド）: 2.250893秒
+- Core i7-6700 Windows 10, JavaScript (Deno): 84.94秒
 - Core i7-6700 Windows 10, C言語 (gcc): 132.6863497秒
 - Core i7-6700 Windows 10, C言語 (nvcc): 34.3973202秒
-- Core i7-6700 Windows 10 NVIDIA RTX 3060Ti: 0.074750秒
-- Core i7-6700 Windows 10 NVIDIA RTX 3060Ti (fast-math): 0.007705秒
+- Core i7-6700 Windows 10 NVIDIA RXT 3060Ti: 0.074750秒
+- Core i7-6700 Windows 10 NVIDIA RXT 3060Ti (fast-math): 0.007705秒
 
-### 132300サンプル 3秒
+## コンパイルと実行
 
-- M1 Macbook Pro, C言語 (6スレッド): 22.464575秒
-- Core i7-6700 Windows 10 NVIDIA RTX 3060Ti: 0.690248秒
-- Core i7-6700 Windows 10 NVIDIA RTX 3060Ti (fast-math): 0.044306秒
+### Windows
 
-### 441000サンプル 10秒 
+```
+powershell -C Measure-Command {./a.exe}
+```
 
-- M1 Macbook Pro, C言語 (6スレッド): 266.189622秒
-- Core i7-6700 Windows 10 NVIDIA RTX 3060Ti: 9.357527秒
-- Core i7-6700 Windows 10 NVIDIA RTX 3060Ti (fast-math): 0.387023秒
+Windows環境で `nvcc` を使用して `dft_st.c` をコンパイルする場合:
 
-### 6028176サンプル全体
+```
+nvcc dft_st.c -D_USE_MATH_DEFINES
+```
 
-- Core i7-6700 Windows 10 NVIDIA RTX 3060Ti (fast-math): 63.493813秒
+### Mac
+
+Mac環境で `dft_mt.c` をコンパイルする場合:
+
+```
+gcc dft_mt.c -D__device__=
+```
 
 ## ライセンス
 
-MIT License — see [LICENSE](LICENSE).
+MIT License — 詳細は [LICENSE](LICENSE) を参照してください。
